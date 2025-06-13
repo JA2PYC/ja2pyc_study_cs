@@ -22,6 +22,11 @@ namespace IntType
 
             Console.WriteLine("The sum of " + n1 + " and " + n2 + " is: " + sum);
 
+
+            System.Int32 n3 = 200;
+            
+            Console.WriteLine("The value of n3 is: " + n3);
+
         }
     }
 }
