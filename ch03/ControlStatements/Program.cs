@@ -15,6 +15,7 @@ namespace ControlStatements
             Console.WriteLine("If-Else Example");
 
             int number = 10;
+            Console.WriteLine($"The number is: {number}");
             if (number > 0)
             {
                 Console.WriteLine("The number is positive.");
@@ -75,13 +76,13 @@ namespace ControlStatements
             switch (day)
             {
                 case "Monday":
-                    Console.WriteLine("It's the start of the week.");
+                    Console.WriteLine($"{day} is the start of the week.");
                     break;
                 case "Friday":
-                    Console.WriteLine("It's almost the weekend!");
+                    Console.WriteLine($"{day} is almost the weekend!");
                     break;
                 default:
-                    Console.WriteLine("It's just another day.");
+                    Console.WriteLine($"{day} is just another day.");
                     break;
             }
 
@@ -116,6 +117,26 @@ namespace ControlStatements
                     break;
                 default:
                     Console.WriteLine("Unknown day of the week.");
+                    break;
+            }
+
+            string language = "C#";
+
+            switch (language)
+            {
+                case "C#":
+                case "CSharp":
+                case "VB.NET":
+                    Console.WriteLine($"You are using a .NET language. {language}");
+                    break;
+                case "Java":
+                    Console.WriteLine($"You are using Java. {language}");
+                    break;
+                case "Python":
+                    Console.WriteLine($"You are using Python. {language}");
+                    break;
+                default:
+                    Console.WriteLine($"Unknown language. {language}");
                     break;
             }
 
