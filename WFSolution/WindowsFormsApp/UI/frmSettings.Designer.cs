@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp
+﻿namespace WindowsFormsApp.UI
 {
     partial class frmSettings
     {
