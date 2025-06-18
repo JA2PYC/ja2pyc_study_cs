@@ -2,8 +2,19 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+
+using System.Collections.Generic;
+
+
+// Libraries
 using WindowsFormsApp.Interop;
 using WindowsFormsApp.UI.UIHandler;
+
+// Machine Vision Libraries
+using WindowsFormsApp.MachineVision.OpenCv;
+using OpenCvSharp;
+using OpenCvSharp.Extensions;
+
 
 namespace WindowsFormsApp.UI
 {
@@ -103,5 +114,100 @@ namespace WindowsFormsApp.UI
         {
 
         }
+
+        private void BtnOpenCvTest_Click(object sender, EventArgs e)
+        {
+            OpenCvCamera camera = new OpenCvCamera();
+
+
+            try
+            {
+                if (camera.ConnectCamera(0))
+                {
+                    Mat frame = camera.CaptureFrame();
+                    if (!frame.Empty())
+                    {
+                        MainCamera.Image = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(frame);
+                        camera.Release();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Captured frame is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Could not connect to the camera.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnCameraList_Click(object sender, EventArgs e)
+        {
+            List<int> cameraList = OpenCvCamera.GetConnectedCameras();
+
+           if (cameraList.Count > 0)
+            {
+                Debug.WriteLine($"Connected cameras: {string.Join(", ", cameraList)}");
+                string cameras = string.Join(", ", cameraList);
+                MessageBox.Show($"Connected cameras: {cameras}", "Camera List", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No cameras connected.", "Camera List", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void BtnLive_Click(object sender, EventArgs e)
+        {
+            OpenCvCamera liveCamera = new OpenCvCamera();
+
+            if (liveCamera.ConnectCamera(0))
+            {
+                try
+                {
+                    // Start the camera live feed
+                    Timer _timer = new Timer();
+                    _timer.Interval = 30;
+                    _timer.Tick += UpdateFrame;
+                    _timer.Start();
+                    MessageBox.Show("Starting live feed...", "Live Feed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while starting the live feed: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Could not connect to the camera.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UpdateFrame(object sender, EventArgs e)
+        {
+                       OpenCvCamera liveCamera = new OpenCvCamera();
+            try
+            {
+                Mat frame = liveCamera.CaptureFrame();
+                if (!frame.Empty())
+                {
+                    MainCamera.Image = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(frame);
+                }
+                else
+                {
+                    MessageBox.Show("Captured frame is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while capturing the frame: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
