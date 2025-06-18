@@ -33,8 +33,13 @@
             this.MainCamera = new System.Windows.Forms.PictureBox();
             this.ProcessLog = new System.Windows.Forms.ListBox();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelStatus = new System.Windows.Forms.Label();
+            this.ProgressBarStatus = new System.Windows.Forms.ProgressBar();
+            this.ListLogs = new System.Windows.Forms.ListBox();
+            this.PanelStatus = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.MainCamera)).BeginInit();
             this.MainLayout.SuspendLayout();
+            this.PanelStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonOnOff
@@ -46,7 +51,7 @@
             this.ButtonOnOff.TabIndex = 0;
             this.ButtonOnOff.Text = "On/Off";
             this.ButtonOnOff.UseVisualStyleBackColor = true;
-            this.ButtonOnOff.Click += new System.EventHandler(this.btnOnOff_Click);
+            this.ButtonOnOff.Click += new System.EventHandler(this.BtnOnOff_Click);
             // 
             // ButtonStart
             // 
@@ -56,7 +61,7 @@
             this.ButtonStart.TabIndex = 1;
             this.ButtonStart.Text = "Start";
             this.ButtonStart.UseVisualStyleBackColor = true;
-            this.ButtonStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.ButtonStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // MainCamera
             // 
@@ -90,6 +95,8 @@
             this.MainLayout.Controls.Add(this.MainCamera, 1, 1);
             this.MainLayout.Controls.Add(this.ButtonStart, 2, 1);
             this.MainLayout.Controls.Add(this.ButtonOnOff, 2, 2);
+            this.MainLayout.Controls.Add(this.ListLogs, 0, 2);
+            this.MainLayout.Controls.Add(this.PanelStatus, 2, 0);
             this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainLayout.Location = new System.Drawing.Point(0, 0);
             this.MainLayout.Name = "MainLayout";
@@ -97,9 +104,51 @@
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainLayout.Size = new System.Drawing.Size(1264, 681);
             this.MainLayout.TabIndex = 4;
-            this.MainLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.MainLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.MainLayout_Paint);
+            // 
+            // LabelStatus
+            // 
+            this.LabelStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.LabelStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelStatus.Location = new System.Drawing.Point(0, 0);
+            this.LabelStatus.Margin = new System.Windows.Forms.Padding(0);
+            this.LabelStatus.Name = "LabelStatus";
+            this.LabelStatus.Padding = new System.Windows.Forms.Padding(5);
+            this.LabelStatus.Size = new System.Drawing.Size(185, 39);
+            this.LabelStatus.TabIndex = 4;
+            this.LabelStatus.Text = "Status";
+            // 
+            // ProgressBarStatus
+            // 
+            this.ProgressBarStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ProgressBarStatus.ForeColor = System.Drawing.Color.LawnGreen;
+            this.ProgressBarStatus.Location = new System.Drawing.Point(0, 39);
+            this.ProgressBarStatus.Name = "ProgressBarStatus";
+            this.ProgressBarStatus.Size = new System.Drawing.Size(185, 23);
+            this.ProgressBarStatus.TabIndex = 5;
+            // 
+            // ListLogs
+            // 
+            this.ListLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListLogs.FormattingEnabled = true;
+            this.ListLogs.ItemHeight = 12;
+            this.ListLogs.Location = new System.Drawing.Point(3, 615);
+            this.ListLogs.Name = "ListLogs";
+            this.ListLogs.Size = new System.Drawing.Size(183, 63);
+            this.ListLogs.TabIndex = 6;
+            // 
+            // PanelStatus
+            // 
+            this.PanelStatus.Controls.Add(this.LabelStatus);
+            this.PanelStatus.Controls.Add(this.ProgressBarStatus);
+            this.PanelStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelStatus.Location = new System.Drawing.Point(1076, 3);
+            this.PanelStatus.Name = "PanelStatus";
+            this.PanelStatus.Size = new System.Drawing.Size(185, 62);
+            this.PanelStatus.TabIndex = 7;
             // 
             // frmMain
             // 
@@ -111,10 +160,11 @@
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "frmMain";
             this.Text = "WFApp";
-            this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MainCamera)).EndInit();
             this.MainLayout.ResumeLayout(false);
             this.MainLayout.PerformLayout();
+            this.PanelStatus.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,6 +177,10 @@
         private System.Windows.Forms.PictureBox MainCamera;
         private System.Windows.Forms.ListBox ProcessLog;
         private System.Windows.Forms.TableLayoutPanel MainLayout;
+        private System.Windows.Forms.Label LabelStatus;
+        private System.Windows.Forms.ProgressBar ProgressBarStatus;
+        private System.Windows.Forms.ListBox ListLogs;
+        private System.Windows.Forms.Panel PanelStatus;
     }
 }
 
