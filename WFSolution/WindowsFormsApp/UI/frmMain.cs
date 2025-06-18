@@ -7,11 +7,11 @@ using WindowsFormsApp.UI.UIHandler;
 
 namespace WindowsFormsApp.UI
 {
-    public partial class frmMain : Form
+    public partial class FrmMain : Form
     {
         private bool isRunning = false;
 
-        public frmMain()
+        public FrmMain()
         {
             Debug.WriteLine("frmMain constructor called");
             InitializeComponent();

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp.UI
 {
-    public partial class frmSettings : Form
+    public partial class FrmSettings : Form
     {
-        public frmSettings()
+        public FrmSettings()
         {
             InitializeComponent();
             this.Text = "Settings";
