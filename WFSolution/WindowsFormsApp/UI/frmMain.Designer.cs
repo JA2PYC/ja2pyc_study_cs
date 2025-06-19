@@ -30,16 +30,23 @@
         {
             this.ButtonOnOff = new System.Windows.Forms.Button();
             this.ButtonStart = new System.Windows.Forms.Button();
-            this.MainCamera = new System.Windows.Forms.PictureBox();
-            this.ProcessLog = new System.Windows.Forms.ListBox();
-            this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.PictureBoxMain = new System.Windows.Forms.PictureBox();
+            this.ListBoxMain = new System.Windows.Forms.ListBox();
+            this.LayoutMain = new System.Windows.Forms.TableLayoutPanel();
+            this.ListBoxLogs = new System.Windows.Forms.ListBox();
+            this.PanelStatus = new System.Windows.Forms.Panel();
             this.LabelStatus = new System.Windows.Forms.Label();
             this.ProgressBarStatus = new System.Windows.Forms.ProgressBar();
-            this.ListLogs = new System.Windows.Forms.ListBox();
-            this.PanelStatus = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.MainCamera)).BeginInit();
-            this.MainLayout.SuspendLayout();
+            this.FlowPanelLeft = new System.Windows.Forms.FlowLayoutPanel();
+            this.ButtonOpenCvTest = new System.Windows.Forms.Button();
+            this.ButtonCameraList = new System.Windows.Forms.Button();
+            this.ButtonLive = new System.Windows.Forms.Button();
+            this.FlowPanelRight = new System.Windows.Forms.FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxMain)).BeginInit();
+            this.LayoutMain.SuspendLayout();
             this.PanelStatus.SuspendLayout();
+            this.FlowPanelLeft.SuspendLayout();
+            this.FlowPanelRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonOnOff
@@ -55,59 +62,84 @@
             // 
             // ButtonStart
             // 
-            this.ButtonStart.Location = new System.Drawing.Point(1076, 71);
+            this.ButtonStart.Location = new System.Drawing.Point(3, 3);
             this.ButtonStart.Name = "ButtonStart";
-            this.ButtonStart.Size = new System.Drawing.Size(100, 50);
+            this.ButtonStart.Size = new System.Drawing.Size(85, 50);
             this.ButtonStart.TabIndex = 1;
             this.ButtonStart.Text = "Start";
             this.ButtonStart.UseVisualStyleBackColor = true;
             this.ButtonStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
-            // MainCamera
+            // PictureBoxMain
             // 
-            this.MainCamera.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainCamera.Location = new System.Drawing.Point(192, 71);
-            this.MainCamera.Name = "MainCamera";
-            this.MainCamera.Size = new System.Drawing.Size(878, 538);
-            this.MainCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.MainCamera.TabIndex = 2;
-            this.MainCamera.TabStop = false;
+            this.PictureBoxMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PictureBoxMain.BackColor = System.Drawing.SystemColors.Window;
+            this.PictureBoxMain.Location = new System.Drawing.Point(192, 71);
+            this.PictureBoxMain.Name = "PictureBoxMain";
+            this.PictureBoxMain.Size = new System.Drawing.Size(878, 538);
+            this.PictureBoxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.PictureBoxMain.TabIndex = 2;
+            this.PictureBoxMain.TabStop = false;
+            this.PictureBoxMain.Click += new System.EventHandler(this.PictureBoxMain_Click);
             // 
-            // ProcessLog
+            // ListBoxMain
             // 
-            this.ProcessLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProcessLog.FormattingEnabled = true;
-            this.ProcessLog.ItemHeight = 12;
-            this.ProcessLog.Location = new System.Drawing.Point(192, 615);
-            this.ProcessLog.Name = "ProcessLog";
-            this.ProcessLog.Size = new System.Drawing.Size(878, 63);
-            this.ProcessLog.TabIndex = 3;
+            this.ListBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListBoxMain.FormattingEnabled = true;
+            this.ListBoxMain.ItemHeight = 12;
+            this.ListBoxMain.Location = new System.Drawing.Point(192, 615);
+            this.ListBoxMain.Name = "ListBoxMain";
+            this.ListBoxMain.Size = new System.Drawing.Size(878, 63);
+            this.ListBoxMain.TabIndex = 3;
             // 
-            // MainLayout
+            // LayoutMain
             // 
-            this.MainLayout.AutoSize = true;
-            this.MainLayout.BackColor = System.Drawing.SystemColors.Window;
-            this.MainLayout.ColumnCount = 3;
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.MainLayout.Controls.Add(this.ProcessLog, 1, 2);
-            this.MainLayout.Controls.Add(this.MainCamera, 1, 1);
-            this.MainLayout.Controls.Add(this.ButtonStart, 2, 1);
-            this.MainLayout.Controls.Add(this.ButtonOnOff, 2, 2);
-            this.MainLayout.Controls.Add(this.ListLogs, 0, 2);
-            this.MainLayout.Controls.Add(this.PanelStatus, 2, 0);
-            this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainLayout.Location = new System.Drawing.Point(0, 0);
-            this.MainLayout.Name = "MainLayout";
-            this.MainLayout.RowCount = 3;
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.MainLayout.Size = new System.Drawing.Size(1264, 681);
-            this.MainLayout.TabIndex = 4;
-            this.MainLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.MainLayout_Paint);
+            this.LayoutMain.AutoSize = true;
+            this.LayoutMain.BackColor = System.Drawing.SystemColors.Window;
+            this.LayoutMain.ColumnCount = 3;
+            this.LayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.LayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.LayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.LayoutMain.Controls.Add(this.ListBoxMain, 1, 2);
+            this.LayoutMain.Controls.Add(this.PictureBoxMain, 1, 1);
+            this.LayoutMain.Controls.Add(this.ButtonOnOff, 2, 2);
+            this.LayoutMain.Controls.Add(this.ListBoxLogs, 0, 2);
+            this.LayoutMain.Controls.Add(this.PanelStatus, 2, 0);
+            this.LayoutMain.Controls.Add(this.FlowPanelLeft, 0, 1);
+            this.LayoutMain.Controls.Add(this.FlowPanelRight, 2, 1);
+            this.LayoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutMain.Location = new System.Drawing.Point(0, 0);
+            this.LayoutMain.Name = "LayoutMain";
+            this.LayoutMain.RowCount = 3;
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutMain.Size = new System.Drawing.Size(1264, 681);
+            this.LayoutMain.TabIndex = 4;
+            this.LayoutMain.Paint += new System.Windows.Forms.PaintEventHandler(this.MainLayout_Paint);
+            // 
+            // ListBoxLogs
+            // 
+            this.ListBoxLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListBoxLogs.FormattingEnabled = true;
+            this.ListBoxLogs.ItemHeight = 12;
+            this.ListBoxLogs.Location = new System.Drawing.Point(3, 615);
+            this.ListBoxLogs.Name = "ListBoxLogs";
+            this.ListBoxLogs.Size = new System.Drawing.Size(183, 63);
+            this.ListBoxLogs.TabIndex = 6;
+            // 
+            // PanelStatus
+            // 
+            this.PanelStatus.Controls.Add(this.LabelStatus);
+            this.PanelStatus.Controls.Add(this.ProgressBarStatus);
+            this.PanelStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelStatus.Location = new System.Drawing.Point(1076, 3);
+            this.PanelStatus.Name = "PanelStatus";
+            this.PanelStatus.Size = new System.Drawing.Size(185, 62);
+            this.PanelStatus.TabIndex = 7;
             // 
             // LabelStatus
             // 
@@ -130,41 +162,81 @@
             this.ProgressBarStatus.Size = new System.Drawing.Size(185, 23);
             this.ProgressBarStatus.TabIndex = 5;
             // 
-            // ListLogs
+            // FlowPanelLeft
             // 
-            this.ListLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListLogs.FormattingEnabled = true;
-            this.ListLogs.ItemHeight = 12;
-            this.ListLogs.Location = new System.Drawing.Point(3, 615);
-            this.ListLogs.Name = "ListLogs";
-            this.ListLogs.Size = new System.Drawing.Size(183, 63);
-            this.ListLogs.TabIndex = 6;
+            this.FlowPanelLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.FlowPanelLeft.AutoScroll = true;
+            this.FlowPanelLeft.AutoSize = true;
+            this.FlowPanelLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FlowPanelLeft.Controls.Add(this.ButtonOpenCvTest);
+            this.FlowPanelLeft.Controls.Add(this.ButtonCameraList);
+            this.FlowPanelLeft.Controls.Add(this.ButtonLive);
+            this.FlowPanelLeft.Location = new System.Drawing.Point(8, 71);
+            this.FlowPanelLeft.Name = "FlowPanelLeft";
+            this.FlowPanelLeft.Size = new System.Drawing.Size(172, 538);
+            this.FlowPanelLeft.TabIndex = 9;
             // 
-            // PanelStatus
+            // ButtonOpenCvTest
             // 
-            this.PanelStatus.Controls.Add(this.LabelStatus);
-            this.PanelStatus.Controls.Add(this.ProgressBarStatus);
-            this.PanelStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelStatus.Location = new System.Drawing.Point(1076, 3);
-            this.PanelStatus.Name = "PanelStatus";
-            this.PanelStatus.Size = new System.Drawing.Size(185, 62);
-            this.PanelStatus.TabIndex = 7;
+            this.ButtonOpenCvTest.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ButtonOpenCvTest.Location = new System.Drawing.Point(3, 3);
+            this.ButtonOpenCvTest.MaximumSize = new System.Drawing.Size(150, 50);
+            this.ButtonOpenCvTest.MinimumSize = new System.Drawing.Size(80, 50);
+            this.ButtonOpenCvTest.Name = "ButtonOpenCvTest";
+            this.ButtonOpenCvTest.Size = new System.Drawing.Size(80, 50);
+            this.ButtonOpenCvTest.TabIndex = 8;
+            this.ButtonOpenCvTest.Text = "OpenCvTest";
+            this.ButtonOpenCvTest.UseVisualStyleBackColor = true;
+            this.ButtonOpenCvTest.Click += new System.EventHandler(this.BtnOpenCvTest_Click);
             // 
-            // frmMain
+            // ButtonCameraList
+            // 
+            this.ButtonCameraList.Location = new System.Drawing.Point(89, 3);
+            this.ButtonCameraList.Name = "ButtonCameraList";
+            this.ButtonCameraList.Size = new System.Drawing.Size(80, 50);
+            this.ButtonCameraList.TabIndex = 9;
+            this.ButtonCameraList.Text = "CameraList";
+            this.ButtonCameraList.UseVisualStyleBackColor = true;
+            this.ButtonCameraList.Click += new System.EventHandler(this.BtnCameraList_Click);
+            // 
+            // ButtonLive
+            // 
+            this.ButtonLive.Location = new System.Drawing.Point(3, 59);
+            this.ButtonLive.Name = "ButtonLive";
+            this.ButtonLive.Size = new System.Drawing.Size(80, 50);
+            this.ButtonLive.TabIndex = 10;
+            this.ButtonLive.Text = "CameraLive";
+            this.ButtonLive.UseVisualStyleBackColor = true;
+            this.ButtonLive.Click += new System.EventHandler(this.BtnLive_Click);
+            // 
+            // FlowPanelRight
+            // 
+            this.FlowPanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.FlowPanelRight.AutoSize = true;
+            this.FlowPanelRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FlowPanelRight.Controls.Add(this.ButtonStart);
+            this.FlowPanelRight.Location = new System.Drawing.Point(1123, 71);
+            this.FlowPanelRight.Name = "FlowPanelRight";
+            this.FlowPanelRight.Size = new System.Drawing.Size(91, 538);
+            this.FlowPanelRight.TabIndex = 10;
+            // 
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.MainLayout);
+            this.Controls.Add(this.LayoutMain);
             this.MinimumSize = new System.Drawing.Size(1280, 720);
-            this.Name = "frmMain";
+            this.Name = "FrmMain";
             this.Text = "WFApp";
             this.Load += new System.EventHandler(this.FrmMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.MainCamera)).EndInit();
-            this.MainLayout.ResumeLayout(false);
-            this.MainLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxMain)).EndInit();
+            this.LayoutMain.ResumeLayout(false);
+            this.LayoutMain.PerformLayout();
             this.PanelStatus.ResumeLayout(false);
+            this.FlowPanelLeft.ResumeLayout(false);
+            this.FlowPanelRight.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,15 +244,26 @@
 
         #endregion
 
+        // Main layout for the form
+        private System.Windows.Forms.TableLayoutPanel LayoutMain;
+        // Main PictureBox for displaying camera feed
+        private System.Windows.Forms.PictureBox PictureBoxMain;
+        private System.Windows.Forms.ListBox ListBoxMain;
+        private System.Windows.Forms.ListBox ListBoxLogs;
+        // Button to toggle process on/off
         private System.Windows.Forms.Button ButtonOnOff;
-        private System.Windows.Forms.Button ButtonStart;
-        private System.Windows.Forms.PictureBox MainCamera;
-        private System.Windows.Forms.ListBox ProcessLog;
-        private System.Windows.Forms.TableLayoutPanel MainLayout;
+        // Status panel with label and progress bar
+        private System.Windows.Forms.Panel PanelStatus;
         private System.Windows.Forms.Label LabelStatus;
         private System.Windows.Forms.ProgressBar ProgressBarStatus;
-        private System.Windows.Forms.ListBox ListLogs;
-        private System.Windows.Forms.Panel PanelStatus;
+        // FlowLayoutPanel for left side buttons
+        private System.Windows.Forms.FlowLayoutPanel FlowPanelLeft;
+        private System.Windows.Forms.Button ButtonOpenCvTest;
+        private System.Windows.Forms.Button ButtonCameraList;
+        private System.Windows.Forms.Button ButtonLive;
+        
+        private System.Windows.Forms.Button ButtonStart;
+        private System.Windows.Forms.FlowLayoutPanel FlowPanelRight;
     }
 }
 
