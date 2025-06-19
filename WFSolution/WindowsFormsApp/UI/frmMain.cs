@@ -20,10 +20,13 @@ namespace WindowsFormsApp.UI
 {
     public partial class FrmMain : Form
     {
-        private bool isRunning = false;
-        private OpenCvManager _openCvManager;
-        private Timer _timer;
+        //private bool isRunning = false;
+        private UIMainHandler _uiMainHandler;
         private UIEventHandler _uiEventHandler;
+
+        private OpenCvManager _openCvManager;
+
+        private Timer _timer;
 
         public FrmMain()
         {
@@ -34,7 +37,14 @@ namespace WindowsFormsApp.UI
         // This method is called when the form is loaded
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            _uiEventHandler = new UIEventHandler(LabelStatus, ProgressBarStatus, ListBoxMain, ListBoxLogs);
+            // Debug.WriteLine("frmMain_Load called");
+
+            // Set the form properties
+            _uiMainHandler = new UIMainHandler(PictureBoxMain, ListBoxMain, LabelStatus, ProgressBarStatus, ListBoxLogs);
+            _uiEventHandler = new UIEventHandler(LabelStatus, ProgressBarStatus, ListBoxLogs);
+
+            _openCvManager = new OpenCvManager(PictureBoxMain);
+
         }
 
         // This method is called when the table layout panel is painted
@@ -46,31 +56,18 @@ namespace WindowsFormsApp.UI
         // Button On Off click event handler
         private void BtnOnOff_Click(object sender, EventArgs e)
         {
-            //ButtonHandler.ToggleProcess(LabelStatus, ref isRunning, ProgressBarStatus, ProcessLog, MainCamera);
-            //isRunning = !isRunning; // Toggle the running state
-
-            //if (isRunning)
-            //{
-            //    LabelStatus.Text = "Running...";
-            //    LabelStatus.ForeColor = Color.Green;
-
-            //} else
-            //{
-            //    LabelStatus.Text = "Stopped";
-            //    LabelStatus.ForeColor = Color.Red;
-            //} 
+            _uiEventHandler.UpdateStatusUI("Toggling On/Off...");
         }
 
         // Button Start click event handler
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            _uiEventHandler.UpdateStatus("Starting process...", 100);
+            _uiEventHandler.UpdateStatusUI("Starting process...", 100);
         }
 
 
         private void BtnOpenCvTest_Click(object sender, EventArgs e)
         {
-            _openCvManager = new OpenCvManager(PictureBoxMain);
 
             //OpenCvCamera camera = new OpenCvCamera();
 

@@ -36,52 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cognex.InSight">
-      <HintPath>libs\Cognex.InSight.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.InSight.EasyBuilder.Editor">
-      <HintPath>libs\Cognex.InSight.EasyBuilder.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.InSight.EasyBuilder.ResourceData">
-      <HintPath>libs\Cognex.InSight.EasyBuilder.ResourceData.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.InSight.EasyBuilder.ViewModels">
-      <HintPath>libs\Cognex.InSight.EasyBuilder.ViewModels.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.InSight.EasyBuilder.WPF">
-      <HintPath>libs\Cognex.InSight.EasyBuilder.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro">
-      <HintPath>libs\Cognex.VisionPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.Caliper">
-      <HintPath>libs\Cognex.VisionPro.Caliper.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.Core">
-      <HintPath>libs\Cognex.VisionPro.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.ImageProcessing">
-      <HintPath>libs\Cognex.VisionPro.ImageProcessing.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.Interop.Core">
-      <HintPath>libs\Cognex.VisionPro.Interop.Core.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.PMRedLine">
-      <HintPath>libs\Cognex.VisionPro.PMRedLine.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.QuickBuild.Core">
-      <HintPath>libs\Cognex.VisionPro.QuickBuild.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.ToolGroup">
-      <HintPath>libs\Cognex.VisionPro.ToolGroup.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.ViDiEL">
-      <HintPath>libs\Cognex.VisionPro.ViDiEL.dll</HintPath>
-    </Reference>
-    <Reference Include="Cognex.VisionPro.VisionInterop">
-      <HintPath>libs\Cognex.VisionPro.VisionInterop.dll</HintPath>
-    </Reference>
     <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenCvSharp4.4.11.0.20250507\lib\net48\OpenCvSharp.dll</HintPath>
     </Reference>
@@ -145,8 +99,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\UIHandler\ButtonHandler.cs" />
     <Compile Include="UI\UIHandler\UIEventHandler.cs" />
-    <Compile Include="UI\UIHandler\UILogManager.cs" />
-    <Compile Include="UI\UIHandler\UIStatusManager.cs" />
+    <Compile Include="UI\UIHandler\LogManager.cs" />
+    <Compile Include="UI\UIHandler\MainManager.cs" />
+    <Compile Include="UI\UIHandler\StatusManager.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="VisionProcessing\VisionProcessor.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 // Cognex VisionPro is a library for machine vision applications.
-using Cognex.VisionPro;
-using Cognex.VisionPro.Exceptions;
+//using Cognex.VisionPro;
+//using Cognex.VisionPro.Exceptions;
 
 
 
