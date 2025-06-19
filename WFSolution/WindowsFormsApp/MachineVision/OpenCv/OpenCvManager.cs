@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-
-// OpenCvSharp Libraries
+﻿// OpenCvSharp Libraries
 using OpenCvSharp;
-using OpenCvSharp.Extensions;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 
 namespace WindowsFormsApp.MachineVision.OpenCv

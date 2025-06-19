@@ -9,20 +9,22 @@ namespace WindowsFormsApp.UI.UIHandler
 {
     internal class UIEventHandler
     {
-        private readonly UIStatusManager _statusManager;
-        private readonly UILogManager _logManager;
+        private readonly StatusManager _statusManager;
+        private readonly LogManager _logManager;
 
-        public UIEventHandler(Label statusLabel, ProgressBar progressBar, ListBox mainListBox, ListBox logListBox)
+        public UIEventHandler(Label statusLabel, ProgressBar progressBar, ListBox logListBox)
         {
-            _statusManager = new UIStatusManager(statusLabel, progressBar);
-            _logManager = new UILogManager(logListBox, mainListBox);
+            _statusManager = new StatusManager(statusLabel, progressBar);
+            _logManager = new LogManager(logListBox);
         }
 
-        public void UpdateStatus(string message, int progressValue)
+
+        // Method to update the status label and progress bar
+        public void UpdateStatusUI(string message, int progressValue)
         {
             try
             {
-                _statusManager.UpdateStatus(message, progressValue);
+                _statusManager.UpdateStatusUI(message, progressValue);
             }
             catch (Exception ex)
             {
@@ -30,11 +32,35 @@ namespace WindowsFormsApp.UI.UIHandler
             }
         }
 
-        public void ResetStatus()
+        public void UpdateStatusUI(string message)
         {
             try
             {
-                _statusManager.ResetStatus();
+                _statusManager.UpdateStatusUI(message);
+            }
+            catch (Exception ex)
+            {
+                _logManager.AddLog($"Error updating status: {ex.Message}");
+            }
+        }
+
+        public void UpdateStatusUI(int progressValue)
+        {
+            try
+            {
+                _statusManager.UpdateStatusUI(progressValue);
+            }
+            catch (Exception ex)
+            {
+                _logManager.AddLog($"Error updating status: {ex.Message}");
+            }
+        }
+
+        public void ResetStatusUI()
+        {
+            try
+            {
+                _statusManager.ResetStatusUI();
             }
             catch (Exception ex)
             {
