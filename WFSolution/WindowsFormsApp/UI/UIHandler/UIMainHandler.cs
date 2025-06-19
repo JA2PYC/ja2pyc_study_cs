@@ -49,6 +49,20 @@ namespace WindowsFormsApp.UI.UIHandler
             }
         }
 
+        public void UpdateMainUI(Mat frame, string item)
+        {
+            try
+            {
+                _mainManager.UpdateMainUI(frame, item);
+                _statusManager.UpdateStatusUI("Frame and item updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                _logManager.AddLog($"[{DateTime.Now}] : Error updating main UI with frame and item: {ex.Message}");
+                _statusManager.UpdateStatusUI("Error updating frame and item.");
+            }
+        }
+
         public void UpdateMainUI(Mat frame)
         {
             try
@@ -62,8 +76,6 @@ namespace WindowsFormsApp.UI.UIHandler
                 _statusManager.UpdateStatusUI("Error updating frame.");
             }
         }
-
-
 
         public void ResetMainUI()
         {

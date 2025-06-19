@@ -42,8 +42,8 @@ namespace WindowsFormsApp.UI
             // Set the form properties
             _uiMainHandler = new UIMainHandler(PictureBoxMain, ListBoxMain, LabelStatus, ProgressBarStatus, ListBoxLogs);
             _uiEventHandler = new UIEventHandler(LabelStatus, ProgressBarStatus, ListBoxLogs);
-
-            _openCvManager = new OpenCvManager(PictureBoxMain);
+            _openCvManager = new OpenCvManager();
+            //_openCvManager = new OpenCvManager(PictureBoxMain);
 
         }
 
@@ -63,12 +63,29 @@ namespace WindowsFormsApp.UI
         private void BtnStart_Click(object sender, EventArgs e)
         {
             _uiEventHandler.UpdateStatusUI("Starting process...", 100);
+
+
         }
 
 
         private void BtnOpenCvTest_Click(object sender, EventArgs e)
         {
-
+            var cameras = _openCvManager.GetConnectedCameras();
+            if (cameras.Count > 0)
+            {
+                _uiMainHandler.UpdateMainUI($"Connected cameras: {string.Join(", ", cameras)}");
+                // Capture a still image from the first camera
+                Mat frame = _openCvManager.CaptureStillImage();
+                if (!frame.Empty())
+                {
+                    // Display the captured image in the PictureBox
+                    _uiEventHandler.UpdateStatusUI("Captured still image successfully.", 100);
+                }
+                else
+                {
+                    _uiMainHandler.UpdateMainUI("Captured frame is empty.");
+                }
+            }
             //OpenCvCamera camera = new OpenCvCamera();
 
 
@@ -118,16 +135,16 @@ namespace WindowsFormsApp.UI
 
         private void BtnLive_Click(object sender, EventArgs e)
         {
-            if (_openCvManager.ConnectCamera(0))
-            {
-                _timer = new Timer();
-                _openCvManager.ShowLiveVideo(_timer);
+            //if (_openCvManager.ConnectCamera(0))
+            //{
+            //    _timer = new Timer();
+            //    _openCvManager.ShowLiveVideo(_timer);
 
-            }
-            else
-            {
-                MessageBox.Show("Could not connect to the camera.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Could not connect to the camera.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
             //OpenCvCamera liveCamera = new OpenCvCamera();
 
             //if (liveCamera.ConnectCamera(0))

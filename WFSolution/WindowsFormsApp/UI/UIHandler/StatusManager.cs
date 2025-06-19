@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace WindowsFormsApp.UI.UIHandler
 {
@@ -11,11 +13,13 @@ namespace WindowsFormsApp.UI.UIHandler
     {
         private readonly Label _statusLabel;
         private readonly ProgressBar _progressBar;
+        private readonly Timer resetProgressBarTimer;
 
         public StatusManager(Label _statusLabel, ProgressBar _progressBar)
         {
             this._statusLabel = _statusLabel ?? throw new ArgumentNullException(nameof(_statusLabel), "Status label cannot be null.");
             this._progressBar = _progressBar ?? throw new ArgumentNullException(nameof(_progressBar), "Progress bar cannot be null.");
+            this.resetProgressBarTimer = new Timer();
         }
 
         // Methods to update the status label and progress bar
@@ -37,6 +41,7 @@ namespace WindowsFormsApp.UI.UIHandler
             {
                 _statusLabel.Text = message;
                 _progressBar.Value = progressValue;
+                ResetProgressBar(3);
             }
         }
 
@@ -69,6 +74,7 @@ namespace WindowsFormsApp.UI.UIHandler
             else
             {
                 _progressBar.Value = progressValue;
+                ResetProgressBar(3);
             }
         }
 
@@ -108,6 +114,38 @@ namespace WindowsFormsApp.UI.UIHandler
             {
                 _progressBar.Value = 0;
             }
+        }
+
+        // Reset the progress bar after specific seconds
+        public void ResetProgressBar(int delayInSeconds)
+        {
+
+            if (delayInSeconds < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(delayInSeconds), "Delay must be a non-negative integer.");
+            }
+
+            if (_progressBar.InvokeRequired)
+            {
+                _progressBar.Invoke(new Action(() => ResetProgressBar(delayInSeconds)));
+            }
+            else
+            {
+                if (resetProgressBarTimer.Enabled)
+                {
+                    resetProgressBarTimer.Stop();
+                    resetProgressBarTimer.Dispose();
+                }
+                resetProgressBarTimer.Interval = delayInSeconds * 1000;
+                resetProgressBarTimer.Tick += (s, e) =>
+                {
+                    resetProgressBarTimer.Stop();    // 타이머 반복 방지
+                    resetProgressBarTimer.Dispose();
+                    _progressBar.Value = 0;
+                };
+                resetProgressBarTimer.Start();
+            }
+
         }
     }
 }
