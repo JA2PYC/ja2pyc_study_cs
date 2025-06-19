@@ -68,19 +68,15 @@ namespace WindowsFormsApp.UI.UIHandler
             }
         }
 
-        public void OnButtonClick(object sender, EventArgs e)
+        public void ResetProgressBar()
         {
             try
             {
-                if (sender is Button button)
-                {
-                    _logManager.AddLog($"Button clicked: {button.Text}");
-                    // Additional logic for button click can be added here
-                }
+                _statusManager.ResetProgressBar();
             }
             catch (Exception ex)
             {
-                _logManager.AddLog($"Error handling button click: {ex.Message}");
+                _logManager.AddLog($"Error resetting progress bar: {ex.Message}");
             }
         }
     }

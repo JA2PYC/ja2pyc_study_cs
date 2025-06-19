@@ -58,6 +58,27 @@ namespace WindowsFormsApp.UI.UIHandler
             }
         }
 
+        public void UpdateMainUI(Mat frame, string listItem)
+        {
+            if (frame == null)
+            {
+                throw new ArgumentNullException(nameof(frame), "Frame cannot be null.");
+            }
+            if (string.IsNullOrEmpty(listItem))
+            {
+                throw new ArgumentException("List item cannot be null or empty.", nameof(listItem));
+            }
+            if (_pictureBoxMain.InvokeRequired)
+            {
+                _pictureBoxMain.Invoke(new Action(() => UpdateMainUI(frame, listItem)));
+            }
+            else
+            {
+                _pictureBoxMain.Image = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(frame);
+                _listboxMain.Items.Add(listItem);
+            }
+        }
+
         public void UpdateMainUI(Mat frame)
         {
             if (frame == null)

@@ -32,5 +32,59 @@ namespace WindowsFormsApp.UI.UIHandler
             }
         }
 
+        public void AddLog(List<string> message)
+        {
+            if (message == null || message.Count == 0)
+            {
+                throw new ArgumentException("Message list cannot be null or empty.", nameof(message));
+            }
+            if (_logListBox.InvokeRequired)
+            {
+                _logListBox.Invoke(new Action(() => 
+                {
+                    foreach (var msg in message)
+                    {
+                        _logListBox.Items.Add($"[{DateTime.Now}] : {msg}");
+                    }
+                }));
+            }
+            else
+            {
+                foreach (var msg in message)
+                {
+                    _logListBox.Items.Add($"[{DateTime.Now}] : {msg}");
+                }
+            }
+        }
+
+
+        public void AddLog(string message, bool isError)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                throw new ArgumentException("Message cannot be null or empty.", nameof(message));
+            }
+            if (_logListBox.InvokeRequired)
+            {
+                _logListBox.Invoke(new Action(() => _logListBox.Items.Add($"[{DateTime.Now}] : {(isError ? "ERROR: " : "")}{message}")));
+            }
+            else
+            {
+                _logListBox.Items.Add($"[{DateTime.Now}] : {(isError ? "ERROR: " : "")}{message}");
+            }
+        }
+
+        public void ClearLogs()
+        {
+            if (_logListBox.InvokeRequired)
+            {
+                _logListBox.Invoke(new Action(ClearLogs));
+            }
+            else
+            {
+                _logListBox.Items.Clear();
+            }
+        }
+
     }
 }

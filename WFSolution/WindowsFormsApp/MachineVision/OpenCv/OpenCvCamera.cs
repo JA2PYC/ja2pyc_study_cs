@@ -21,12 +21,11 @@ namespace WindowsFormsApp.MachineVision.OpenCv
             }
         }
 
-
         public static List<int> GetConnectedCameras(int maxCamera = 10)
         {
             List<int> cameraIndexes = new List<int>();
 
-            for (int i = 0; i < maxCamera; i++ )
+            for (int i = 0; i < maxCamera; i++)
             {
                 using (VideoCapture capture = new VideoCapture(i))
                 {
@@ -41,26 +40,25 @@ namespace WindowsFormsApp.MachineVision.OpenCv
             return cameraIndexes;
         }
 
-        public bool ConnectCamera(int cameraIndex)
+        public static VideoCapture ConnectCamera(int cameraIndex)
         {
-            if (_capture.IsOpened())
+            VideoCapture capture = new VideoCapture(cameraIndex);
+            if (!capture.IsOpened())
             {
-                _capture.Release();
+                throw new Exception($"Could not open camera at index {cameraIndex}.");
             }
-            _capture = new VideoCapture(cameraIndex);
-            return _capture.IsOpened();
+            return capture;
         }
 
-        public Mat CaptureFrame()
+        public static void ReleaseCamera(VideoCapture capture)
         {
-            Mat frame = new Mat();
-            _capture.Read(frame);
-            if (frame.Empty())
+            if (capture != null && capture.IsOpened())
             {
-                throw new Exception("Captured frame is empty.");
+                capture.Release();
+                capture.Dispose();
             }
-            return frame;
         }
+
         public void Release()
         {
             _capture.Release();
