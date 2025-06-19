@@ -41,6 +41,16 @@ namespace WindowsFormsApp.MachineVision.OpenCv
             return cameraIndexes;
         }
 
+        public bool ConnectCamera(int cameraIndex)
+        {
+            if (_capture.IsOpened())
+            {
+                _capture.Release();
+            }
+            _capture = new VideoCapture(cameraIndex);
+            return _capture.IsOpened();
+        }
+
         public Mat CaptureFrame()
         {
             Mat frame = new Mat();
@@ -56,15 +66,6 @@ namespace WindowsFormsApp.MachineVision.OpenCv
             _capture.Release();
         }
 
-        public bool ConnectCamera(int cameraIndex)
-        {
-            if (_capture.IsOpened())
-            {
-                _capture.Release();
-            }
-            _capture = new VideoCapture(cameraIndex);
-            return _capture.IsOpened();
-        }
 
 
     }

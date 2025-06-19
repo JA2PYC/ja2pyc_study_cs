@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
 
 // OpenCvSharp Libraries
 using OpenCvSharp;
@@ -13,17 +15,40 @@ namespace WindowsFormsApp.MachineVision.OpenCv
 {
     internal class OpenCvManager
     {
-        private void ComputeImage()
+        private OpenCvCamera _camera;
+        private OpenCvDisplay _display;
+
+        public OpenCvManager(PictureBox pictureBox)
         {
-            // Create a new Mat object with the specified dimensions and type
-            Mat mat = new Mat(100, 100, MatType.CV_8UC3);
-            // Fill the Mat with a color (e.g., red)
-            mat.SetTo(new Scalar(0, 0, 255));
-            // Convert the Mat to a Bitmap
-            var bitmap = mat.ToBitmap();
-            // Display or use the bitmap as needed
-            // For example, you can save it to a file or display it in a PictureBox
-            bitmap.Save("output_image.png");
+            _camera = new OpenCvCamera();
+            _display = new OpenCvDisplay(pictureBox);
+        }
+        
+        public List<int> GetConnectedCameras()
+        {
+            return OpenCvCamera.GetConnectedCameras();
+        }
+
+        public bool ConnectCamera(int cameraIndex)
+        {
+            return _camera.ConnectCamera(cameraIndex);
+        }
+
+        public void ShowLiveVideo(Timer timer)
+        {
+            timer.Interval = 30;
+            timer.Tick += (sender, e) =>
+            {
+                Mat frame = _camera.CaptureFrame();
+                _display.ShowImage(frame);
+            };
+            timer.Start();
+        }
+
+        public void StopLiveVideo(Timer timer)
+        {
+            timer.Stop();
+            _camera.Release();
         }
     }
 }
