@@ -77,6 +77,36 @@ namespace WindowsFormsApp.UI.UIHandler
             }
         }
 
+        public void AddItemToListBoxMain(string item)
+        {
+            try
+            {
+                _mainManager.AddItemToListBoxMain(item);
+                _statusManager.UpdateStatusUI("Item added to main list successfully.");
+            }
+            catch (Exception ex)
+            {
+                _logManager.AddLog($"[{DateTime.Now}] : Error adding item to main list: {ex.Message}");
+                _statusManager.UpdateStatusUI("Error adding item to main list.");
+            }
+        }
+
+        public void AddItemToListBoxMain(List<string> items)
+        {
+            try
+            {
+                _mainManager.AddItemToListBoxMain(items);
+                _statusManager.UpdateStatusUI("Item added to main list at specified index successfully.");
+            }
+            catch (Exception ex)
+            {
+                _logManager.AddLog($"[{DateTime.Now}] : Error adding items to main list : {ex.Message}");
+                _statusManager.UpdateStatusUI("Error adding item to main list.");
+            }
+        }
+
+
+
         public void ResetMainUI()
         {
             try

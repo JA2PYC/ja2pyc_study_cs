@@ -73,17 +73,18 @@ namespace WindowsFormsApp.UI
             var cameras = _openCvManager.GetConnectedCameras();
             if (cameras.Count > 0)
             {
-                _uiMainHandler.UpdateMainUI($"Connected cameras: {string.Join(", ", cameras)}");
+
+                _openCvManager.OpenCamera(cameras[0]);
                 // Capture a still image from the first camera
                 Mat frame = _openCvManager.CaptureStillImage();
                 if (!frame.Empty())
                 {
                     // Display the captured image in the PictureBox
-                    _uiEventHandler.UpdateStatusUI("Captured still image successfully.", 100);
+                    _uiMainHandler.UpdateMainUI(frame, $"[{DateTime.Now}] Camera Count : {cameras.Count}");
                 }
                 else
                 {
-                    _uiMainHandler.UpdateMainUI("Captured frame is empty.");
+                    _uiEventHandler.UpdateStatusUI("[ERROR] Empty Frame");
                 }
             }
             //OpenCvCamera camera = new OpenCvCamera();
@@ -117,21 +118,29 @@ namespace WindowsFormsApp.UI
 
         private void BtnCameraList_Click(object sender, EventArgs e)
         {
-            List<int> cameraList = _openCvManager.GetConnectedCameras();
-            MessageBox.Show($"Connected cameras: {string.Join(", ", cameraList)}, count : {cameraList.Count}", "Camera List", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //List<int> cameraList = OpenCvCamera.GetConnectedCameras();
+            var cameraList = _openCvManager.GetConnectedCameras();
 
-            //if (cameraList.Count > 0)
-            //{
-            //    Debug.WriteLine($"Connected cameras: {string.Join(", ", cameraList)}");
-            //    string cameras = string.Join(", ", cameraList);
-            //    MessageBox.Show($"Connected cameras: {cameras}", "Camera List", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No cameras connected.", "Camera List", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-        }
+            if (cameraList.Count > 0)
+            {
+                _uiMainHandler.AddItemToListBoxMain($"Connected cameras: {string.Join(", ", cameraList)}");
+            }
+
+
+                //List<int> cameraList = _openCvManager.GetConnectedCameras();
+                //MessageBox.Show($"Connected cameras: {string.Join(", ", cameraList)}, count : {cameraList.Count}", "Camera List", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //List<int> cameraList = OpenCvCamera.GetConnectedCameras();
+
+                //if (cameraList.Count > 0)
+                //{
+                //    Debug.WriteLine($"Connected cameras: {string.Join(", ", cameraList)}");
+                //    string cameras = string.Join(", ", cameraList);
+                //    MessageBox.Show($"Connected cameras: {cameras}", "Camera List", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
+                //else
+                //{
+                //    MessageBox.Show("No cameras connected.", "Camera List", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
+            }
 
         private void BtnLive_Click(object sender, EventArgs e)
         {
