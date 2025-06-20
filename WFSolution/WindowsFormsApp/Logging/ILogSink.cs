@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WindowsFormsApp.Logging.Enums;
 
 namespace WindowsFormsApp.Logging
 {
     internal interface ILogSink
     {
-        void Log(string message);
-        void Log(string message, Exception ex);
-        void Log(List<string> messages);
-        void Log(List<string> messages, Exception ex);
+        void Log(string message, LogLevel loglevel);
+        void Log(string message, LogLevel loglevel, Exception ex);
+        void Log(List<string> messages, LogLevel loglevel);
+        void Log(List<string> messages, LogLevel loglevel, Exception ex);
 
     }
 }
