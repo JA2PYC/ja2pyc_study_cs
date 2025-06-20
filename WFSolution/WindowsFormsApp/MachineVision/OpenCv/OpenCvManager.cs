@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp.MachineVision.OpenCv
 {
-    internal class OpenCvManager
+    internal class OpenCvManager : ICameraStrategy
     {
         private VideoCapture _currentCamera;
 
