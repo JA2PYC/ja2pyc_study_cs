@@ -18,6 +18,9 @@ namespace WindowsFormsApp.MachineVision
     {
         private ICameraStrategy _cameraStrategy;
 
+
+
+
         public void SetCameraType(CameraType cameraType)
         {
             switch (cameraType)

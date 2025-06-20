@@ -8,7 +8,46 @@ namespace WindowsFormsApp.MachineVision.OpenCv
 {
     internal class OpenCvManager : ICameraStrategy
     {
+
         private VideoCapture _currentCamera;
+
+
+        public bool ConnectCamera(int index)
+        {
+            _currentCamera = OpenCvCamera.ConnectCamera(index);
+            return _currentCamera != null && _currentCamera.IsOpened();
+        }
+
+        public string GetCameraInfo() => _currentCamera != null && _currentCamera.IsOpened()
+                ? OpenCvUtilities.GetCameraInfo(_currentCamera)
+                : "Camera is not opened.";
+
+        public byte[] CaptureFrame()
+        {
+            if (_currentCamera == null || !_currentCamera.IsOpened())
+            {
+                throw new InvalidOperationException("Camera is not opened.");
+            } else
+            {
+                //return OpenCvCapture.CaptureFrame(_currentCamera);
+                var mat = OpenCvCapture.CaptureFrame(_currentCamera);
+                return mat.ToBytes(".jpg");
+            }
+        }
+
+      
+        public void DisconnectCamera()
+        {
+                       if (_currentCamera != null)
+            {
+                OpenCvCamera.ReleaseCamera(_currentCamera);
+                _currentCamera = null;
+            }
+        }
+
+
+
+        // Old Methods
 
         public List<int> GetConnectedCameras()
         {

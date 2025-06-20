@@ -77,6 +77,7 @@
     <Compile Include="DataHandling\DatabaseManager.cs" />
     <Compile Include="Interop\Kernal32.cs" />
     <Compile Include="Interop\User32.cs" />
+    <Compile Include="MachineVision\ICameraStrategy.cs" />
     <Compile Include="MachineVision\CameraManager.cs" />
     <Compile Include="MachineVision\InSight\InSightManager.cs" />
     <Compile Include="MachineVision\OpenCv\OpenCvCamera.cs" />

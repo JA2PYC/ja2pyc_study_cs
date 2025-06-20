@@ -11,20 +11,7 @@ namespace WindowsFormsApp.MachineVision.OpenCv
 {
     internal class OpenCvUtilities
     {
-
-        public static void SetResolution (VideoCapture capture, int width, int height)
-        {
-            if (capture == null || !capture.IsOpened())
-            {
-                throw new ArgumentException("VideoCapture is not initialized or opened.");
-            }
-            if (!capture.Set(VideoCaptureProperties.FrameWidth, width) ||
-                !capture.Set(VideoCaptureProperties.FrameHeight, height))
-            {
-                throw new Exception("Failed to set resolution.");
-            }
-        }
-
+        // Gets the list of connected cameras
         public static string GetCameraInfo(VideoCapture capture)
         {
             if (capture == null || !capture.IsOpened())
@@ -39,5 +26,20 @@ namespace WindowsFormsApp.MachineVision.OpenCv
             info.AppendLine($"FourCC: {capture.Get(VideoCaptureProperties.FourCC)}");
             return info.ToString();
         }
+
+        // Sets the resolution of the video capture device
+        public static void SetResolution(VideoCapture capture, int width, int height)
+        {
+            if (capture == null || !capture.IsOpened())
+            {
+                throw new ArgumentException("VideoCapture is not initialized or opened.");
+            }
+            if (!capture.Set(VideoCaptureProperties.FrameWidth, width) ||
+                !capture.Set(VideoCaptureProperties.FrameHeight, height))
+            {
+                throw new Exception("Failed to set resolution.");
+            }
+        }
+
     }
 }
