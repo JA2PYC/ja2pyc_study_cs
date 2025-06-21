@@ -38,10 +38,14 @@
             this.LabelStatus = new System.Windows.Forms.Label();
             this.ProgressBarStatus = new System.Windows.Forms.ProgressBar();
             this.FlowPanelLeft = new System.Windows.Forms.FlowLayoutPanel();
-            this.ButtonOpenCvTest = new System.Windows.Forms.Button();
+            this.ButtonCameraType = new System.Windows.Forms.Button();
             this.ButtonCameraList = new System.Windows.Forms.Button();
-            this.ButtonLive = new System.Windows.Forms.Button();
+            this.ButtonStartLive = new System.Windows.Forms.Button();
             this.FlowPanelRight = new System.Windows.Forms.FlowLayoutPanel();
+            this.ButtonCameraInfo = new System.Windows.Forms.Button();
+            this.ButtonCaptureImage = new System.Windows.Forms.Button();
+            this.ButtonSetResolution = new System.Windows.Forms.Button();
+            this.ButtonStopLive = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxMain)).BeginInit();
             this.LayoutMain.SuspendLayout();
             this.PanelStatus.SuspendLayout();
@@ -168,26 +172,30 @@
             this.FlowPanelLeft.AutoScroll = true;
             this.FlowPanelLeft.AutoSize = true;
             this.FlowPanelLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.FlowPanelLeft.Controls.Add(this.ButtonOpenCvTest);
+            this.FlowPanelLeft.Controls.Add(this.ButtonCameraType);
             this.FlowPanelLeft.Controls.Add(this.ButtonCameraList);
-            this.FlowPanelLeft.Controls.Add(this.ButtonLive);
+            this.FlowPanelLeft.Controls.Add(this.ButtonCameraInfo);
+            this.FlowPanelLeft.Controls.Add(this.ButtonSetResolution);
+            this.FlowPanelLeft.Controls.Add(this.ButtonCaptureImage);
+            this.FlowPanelLeft.Controls.Add(this.ButtonStartLive);
+            this.FlowPanelLeft.Controls.Add(this.ButtonStopLive);
             this.FlowPanelLeft.Location = new System.Drawing.Point(8, 71);
             this.FlowPanelLeft.Name = "FlowPanelLeft";
             this.FlowPanelLeft.Size = new System.Drawing.Size(172, 538);
             this.FlowPanelLeft.TabIndex = 9;
             // 
-            // ButtonOpenCvTest
+            // ButtonCameraType
             // 
-            this.ButtonOpenCvTest.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ButtonOpenCvTest.Location = new System.Drawing.Point(3, 3);
-            this.ButtonOpenCvTest.MaximumSize = new System.Drawing.Size(150, 50);
-            this.ButtonOpenCvTest.MinimumSize = new System.Drawing.Size(80, 50);
-            this.ButtonOpenCvTest.Name = "ButtonOpenCvTest";
-            this.ButtonOpenCvTest.Size = new System.Drawing.Size(80, 50);
-            this.ButtonOpenCvTest.TabIndex = 8;
-            this.ButtonOpenCvTest.Text = "OpenCvTest";
-            this.ButtonOpenCvTest.UseVisualStyleBackColor = true;
-            this.ButtonOpenCvTest.Click += new System.EventHandler(this.BtnOpenCvTest_Click);
+            this.ButtonCameraType.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ButtonCameraType.Location = new System.Drawing.Point(3, 3);
+            this.ButtonCameraType.MaximumSize = new System.Drawing.Size(150, 50);
+            this.ButtonCameraType.MinimumSize = new System.Drawing.Size(80, 50);
+            this.ButtonCameraType.Name = "ButtonCameraType";
+            this.ButtonCameraType.Size = new System.Drawing.Size(80, 50);
+            this.ButtonCameraType.TabIndex = 8;
+            this.ButtonCameraType.Text = "Camera \r\nType";
+            this.ButtonCameraType.UseVisualStyleBackColor = true;
+            this.ButtonCameraType.Click += new System.EventHandler(this.BtnCameraType_Click);
             // 
             // ButtonCameraList
             // 
@@ -195,19 +203,19 @@
             this.ButtonCameraList.Name = "ButtonCameraList";
             this.ButtonCameraList.Size = new System.Drawing.Size(80, 50);
             this.ButtonCameraList.TabIndex = 9;
-            this.ButtonCameraList.Text = "CameraList";
+            this.ButtonCameraList.Text = "Camera \r\nList";
             this.ButtonCameraList.UseVisualStyleBackColor = true;
             this.ButtonCameraList.Click += new System.EventHandler(this.BtnCameraList_Click);
             // 
-            // ButtonLive
+            // ButtonStartLive
             // 
-            this.ButtonLive.Location = new System.Drawing.Point(3, 59);
-            this.ButtonLive.Name = "ButtonLive";
-            this.ButtonLive.Size = new System.Drawing.Size(80, 50);
-            this.ButtonLive.TabIndex = 10;
-            this.ButtonLive.Text = "CameraLive";
-            this.ButtonLive.UseVisualStyleBackColor = true;
-            this.ButtonLive.Click += new System.EventHandler(this.BtnLive_Click);
+            this.ButtonStartLive.Location = new System.Drawing.Point(89, 115);
+            this.ButtonStartLive.Name = "ButtonStartLive";
+            this.ButtonStartLive.Size = new System.Drawing.Size(80, 50);
+            this.ButtonStartLive.TabIndex = 10;
+            this.ButtonStartLive.Text = "Start \r\nLive";
+            this.ButtonStartLive.UseVisualStyleBackColor = true;
+            this.ButtonStartLive.Click += new System.EventHandler(this.BtnLive_Click);
             // 
             // FlowPanelRight
             // 
@@ -219,6 +227,42 @@
             this.FlowPanelRight.Name = "FlowPanelRight";
             this.FlowPanelRight.Size = new System.Drawing.Size(91, 538);
             this.FlowPanelRight.TabIndex = 10;
+            // 
+            // ButtonCameraInfo
+            // 
+            this.ButtonCameraInfo.Location = new System.Drawing.Point(3, 59);
+            this.ButtonCameraInfo.Name = "ButtonCameraInfo";
+            this.ButtonCameraInfo.Size = new System.Drawing.Size(80, 50);
+            this.ButtonCameraInfo.TabIndex = 11;
+            this.ButtonCameraInfo.Text = "Camera \r\nInfo";
+            this.ButtonCameraInfo.UseVisualStyleBackColor = true;
+            // 
+            // ButtonCaptureImage
+            // 
+            this.ButtonCaptureImage.Location = new System.Drawing.Point(3, 115);
+            this.ButtonCaptureImage.Name = "ButtonCaptureImage";
+            this.ButtonCaptureImage.Size = new System.Drawing.Size(80, 50);
+            this.ButtonCaptureImage.TabIndex = 12;
+            this.ButtonCaptureImage.Text = "Get Image";
+            this.ButtonCaptureImage.UseVisualStyleBackColor = true;
+            // 
+            // ButtonSetResolution
+            // 
+            this.ButtonSetResolution.Location = new System.Drawing.Point(89, 59);
+            this.ButtonSetResolution.Name = "ButtonSetResolution";
+            this.ButtonSetResolution.Size = new System.Drawing.Size(80, 50);
+            this.ButtonSetResolution.TabIndex = 13;
+            this.ButtonSetResolution.Text = "Set \r\nResolution";
+            this.ButtonSetResolution.UseVisualStyleBackColor = true;
+            // 
+            // ButtonStopLive
+            // 
+            this.ButtonStopLive.Location = new System.Drawing.Point(3, 171);
+            this.ButtonStopLive.Name = "ButtonStopLive";
+            this.ButtonStopLive.Size = new System.Drawing.Size(80, 50);
+            this.ButtonStopLive.TabIndex = 14;
+            this.ButtonStopLive.Text = "Stop \r\nLive";
+            this.ButtonStopLive.UseVisualStyleBackColor = true;
             // 
             // FrmMain
             // 
@@ -258,12 +302,16 @@
         private System.Windows.Forms.ProgressBar ProgressBarStatus;
         // FlowLayoutPanel for left side buttons
         private System.Windows.Forms.FlowLayoutPanel FlowPanelLeft;
-        private System.Windows.Forms.Button ButtonOpenCvTest;
+        private System.Windows.Forms.Button ButtonCameraType;
         private System.Windows.Forms.Button ButtonCameraList;
-        private System.Windows.Forms.Button ButtonLive;
+        private System.Windows.Forms.Button ButtonStartLive;
         
         private System.Windows.Forms.Button ButtonStart;
         private System.Windows.Forms.FlowLayoutPanel FlowPanelRight;
+        private System.Windows.Forms.Button ButtonCameraInfo;
+        private System.Windows.Forms.Button ButtonCaptureImage;
+        private System.Windows.Forms.Button ButtonSetResolution;
+        private System.Windows.Forms.Button ButtonStopLive;
     }
 }
 

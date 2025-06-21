@@ -34,18 +34,15 @@ namespace WindowsFormsApp.MachineVision
                 default:
                     throw new NotSupportedException("Unsupported camera type.");
             }
+            //_cameraStrategy = cameraType switch
+            //{
+            //    CameraType.OpenCv => new OpenCv.OpenCvManager(),
+            //    //CameraType.VisionPro => throw new NotImplementedException(),
+            //    //CameraType.InSight => throw new NotImplementedException(),
+            //    _ => throw new ArgumentException("Unsupported camera type.")
+            //};
         }
-        //public void SetMode(CameraType cameraType)
-        //{
-        //    _cameraStrategy = cameraType switch
-        //    {
-        //        CameraType.OpenCv => new OpenCv.OpenCvManager(),
-        //        //CameraType.VisionPro => throw new NotImplementedException(),
-        //        //CameraType.InSight => throw new NotImplementedException(),
-        //        _ => throw new ArgumentException("Unsupported camera type.")
-        //    };
-        //}
-
+        
         public bool ConnectCamera(int index) => _cameraStrategy.ConnectCamera(index);
         public string GetCameraInfo() => _cameraStrategy.GetCameraInfo();
 

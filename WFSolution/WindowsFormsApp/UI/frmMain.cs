@@ -14,6 +14,7 @@ using WindowsFormsApp.UI.UIHandler;
 using WindowsFormsApp.MachineVision.OpenCv;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
+using WindowsFormsApp.MachineVision;
 
 
 namespace WindowsFormsApp.UI
@@ -24,7 +25,8 @@ namespace WindowsFormsApp.UI
         private UIMainHandler _uiMainHandler;
         private UIEventHandler _uiEventHandler;
 
-        private OpenCvManager _openCvManager;
+        private CameraManager _cameraManager;
+        //private OpenCvManager _openCvManager;
 
         private Timer _timer;
 
@@ -42,7 +44,9 @@ namespace WindowsFormsApp.UI
             // Set the form properties
             _uiMainHandler = new UIMainHandler(PictureBoxMain, ListBoxMain, LabelStatus, ProgressBarStatus, ListBoxLogs);
             _uiEventHandler = new UIEventHandler(LabelStatus, ProgressBarStatus, ListBoxLogs);
-            _openCvManager = new OpenCvManager();
+
+            _cameraManager = new CameraManager();
+            //_openCvManager = new OpenCvManager();
             //_openCvManager = new OpenCvManager(PictureBoxMain);
 
         }
@@ -68,25 +72,36 @@ namespace WindowsFormsApp.UI
         }
 
 
-        private void BtnOpenCvTest_Click(object sender, EventArgs e)
+        private void BtnCameraType_Click(object sender, EventArgs e)
         {
-            var cameras = _openCvManager.GetConnectedCameras();
-            if (cameras.Count > 0)
-            {
+            _cameraManager.SetCameraType(CameraType.OpenCv);
 
-                _openCvManager.OpenCamera(cameras[0]);
-                // Capture a still image from the first camera
-                Mat frame = _openCvManager.CaptureStillImage();
-                if (!frame.Empty())
-                {
-                    // Display the captured image in the PictureBox
-                    _uiMainHandler.UpdateMainUI(frame, $"[{DateTime.Now}] Camera Count : {cameras.Count}");
-                }
-                else
-                {
-                    _uiEventHandler.UpdateStatusUI("[ERROR] Empty Frame");
-                }
+            if (_cameraManager.ConnectCamera(0))
+            {
+                _uiMainHandler.UpdateMainUI("Camera connected successfully.", "Camera Info");
+                _uiEventHandler.UpdateStatusUI(_cameraManager.GetCameraInfo());
             }
+            else
+            {
+                _uiEventHandler.UpdateStatusUI("[ERROR] Could not connect to the camera.");
+            }
+            //var cameras = _openCvManager.GetConnectedCameras();
+            //if (cameras.Count > 0)
+            //{
+
+            //    _openCvManager.OpenCamera(cameras[0]);
+            //    // Capture a still image from the first camera
+            //    Mat frame = _openCvManager.CaptureStillImage();
+            //    if (!frame.Empty())
+            //    {
+            //        // Display the captured image in the PictureBox
+            //        _uiMainHandler.UpdateMainUI(frame, $"[{DateTime.Now}] Camera Count : {cameras.Count}");
+            //    }
+            //    else
+            //    {
+            //        _uiEventHandler.UpdateStatusUI("[ERROR] Empty Frame");
+            //    }
+            //}
             //OpenCvCamera camera = new OpenCvCamera();
 
 
@@ -118,12 +133,12 @@ namespace WindowsFormsApp.UI
 
         private void BtnCameraList_Click(object sender, EventArgs e)
         {
-            var cameraList = _openCvManager.GetConnectedCameras();
+            //var cameraList = _openCvManager.GetConnectedCameras();
 
-            if (cameraList.Count > 0)
-            {
-                _uiMainHandler.AddItemToListBoxMain($"Connected cameras: {string.Join(", ", cameraList)}");
-            }
+            //if (cameraList.Count > 0)
+            //{
+            //    _uiMainHandler.AddItemToListBoxMain($"Connected cameras: {string.Join(", ", cameraList)}");
+            //}
 
 
                 //List<int> cameraList = _openCvManager.GetConnectedCameras();
