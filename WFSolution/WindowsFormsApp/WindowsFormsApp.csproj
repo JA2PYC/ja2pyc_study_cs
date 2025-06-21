@@ -77,6 +77,11 @@
     <Compile Include="DataHandling\DatabaseManager.cs" />
     <Compile Include="Interop\Kernal32.cs" />
     <Compile Include="Interop\User32.cs" />
+    <Compile Include="Logging\Enums\LogLevel.cs" />
+    <Compile Include="Logging\ILogSink.cs" />
+    <Compile Include="Logging\FileLogSink.cs" />
+    <Compile Include="MachineVision\CameraSession.cs" />
+    <Compile Include="MachineVision\CaptureContext.cs" />
     <Compile Include="MachineVision\ICameraStrategy.cs" />
     <Compile Include="MachineVision\CameraManager.cs" />
     <Compile Include="MachineVision\InSight\InSightManager.cs" />
@@ -138,6 +143,7 @@
   <ItemGroup>
     <None Include="UI\Resources\OpenCV_logo_no_text_.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
