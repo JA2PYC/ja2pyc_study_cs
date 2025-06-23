@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using WindowsFormsApp.MachineVision.OpenCv;
 
 namespace WindowsFormsApp.MachineVision
@@ -17,6 +14,8 @@ namespace WindowsFormsApp.MachineVision
     internal class CameraManager
     {
         private ICameraStrategy _cameraStrategy;
+        private CameraSession _cameraSession;
+        private CaptureContext _captureContext;
 
         public void SetCameraType(CameraType cameraType)
         {
@@ -42,13 +41,63 @@ namespace WindowsFormsApp.MachineVision
             //    _ => throw new ArgumentException("Unsupported camera type.")
             //};
         }
-        
-        public bool ConnectCamera(int index) => _cameraStrategy.ConnectCamera(index);
+
+        public bool ConnectCamera(int index)
+        {
+            bool success = _cameraStrategy.ConnectCamera(index);
+            if (success)
+            {
+                _cameraSession = new CameraSession
+                {
+                    SessionId = index,
+                    CameraStrategy = _cameraStrategy,
+                    CameraType = _cameraStrategy.GetType().Name,
+                    CameraIndex = index,
+                    IsConnected = true,
+                    LastConnectionTime = DateTime.Now
+                };
+            }
+            return success;
+        }
         public string GetCameraInfo() => _cameraStrategy.GetCameraInfo();
 
         public byte[] CaptureFrame() => _cameraStrategy.CaptureFrame();
 
-        public void DisconnectCamera() => _cameraStrategy.DisconnectCamera();
+        public void DisconnectCamera()
+        {
+            _cameraStrategy.DisconnectCamera();
+            _cameraSession = null;
+            StopLiveVideo();
+        }
+
+        public void StartLiveVideo()
+        {
+            if (_cameraSession == null || !_cameraSession.IsConnected)
+            {
+                throw new InvalidOperationException("Camera is not connected.");
+            }
+
+            _captureContext = new CaptureContext
+            {
+                ActiveSession = _cameraSession,
+                StreamTimer = new Timer { Interval = 30 },
+                OnFreameCaptured = frame =>
+                {
+                    if (frame != null)
+                    {
+                        using var ms = new System.IO.MemoryStream(frame);
+                    }
+                }
+            }
+        }
+
+        public void StopLiveVideo()
+        {
+             
+        }
+
+        public CameraSession GetSession() => _cameraSession;
+        public CaptureContext GetContext() => _captureContext;
 
 
     }
