@@ -77,18 +77,18 @@ namespace WindowsFormsApp.MachineVision
                 throw new InvalidOperationException("Camera is not connected.");
             }
 
-            _captureContext = new CaptureContext
-            {
-                ActiveSession = _cameraSession,
-                StreamTimer = new Timer { Interval = 30 },
-                OnFreameCaptured = frame =>
-                {
-                    if (frame != null)
-                    {
-                        using var ms = new System.IO.MemoryStream(frame);
-                    }
-                }
-            }
+            //_captureContext = new CaptureContext
+            //{
+                //ActiveSession = _cameraSession,
+                //StreamTimer = new Timer { Interval = 30 },
+                //OnFreameCaptured = frame =>
+                //{
+                //    if (frame != null)
+                //    {
+                //        using var ms = new System.IO.MemoryStream(frame);
+                //    }
+                //}
+            //}
         }
 
         public void StopLiveVideo()
