@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Timers;
+using System.Windows.Forms;
 using WindowsFormsApp.MachineVision.OpenCv;
 
 namespace WindowsFormsApp.MachineVision
@@ -77,7 +78,7 @@ namespace WindowsFormsApp.MachineVision
             StopLiveVideo();
         }
 
-        public void StartLiveVideo()
+        public void StartLiveVideo(PictureBox displayBox)
         {
             if (_cameraSession == null || !_cameraSession.IsConnected)
             {
@@ -86,16 +87,24 @@ namespace WindowsFormsApp.MachineVision
 
             //_captureContext = new CaptureContext
             //{
-            //ActiveSession = _cameraSession,
-            //StreamTimer = new Timer { Interval = 30 },
-            //OnFreameCaptured = frame =>
-            //{
-            //    if (frame != null)
+            //    ActiveSession = _cameraSession,
+            //    StreamTimer = new System.Timers.Timer { Interval = 30 },
+            //    OnFrameCaptured = frame =>
             //    {
-            //        using var ms = new System.IO.MemoryStream(frame);
+            //        if (frame != null)
+            //        {
+            //            using var ms = new System.IO.MemoryStream(frame);
+            //            displayBox.Image = System.Drawing.Image.FromStream(ms);
+            //        }
             //    }
-            //}
-            //}
+            //};
+
+            //_captureContext.StreamTimer.Tick += (s, e) =>
+            //{
+            //    var data = _cameraStrategy.CaptureFrame();
+            //    _captureContext.OnFrameCaptured?.Invoke(data);
+            //};
+            //_captureContext.StreamTimer.Start();
         }
 
         public void StopLiveVideo()
