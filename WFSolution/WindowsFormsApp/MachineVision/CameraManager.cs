@@ -59,9 +59,16 @@ namespace WindowsFormsApp.MachineVision
             }
             return success;
         }
-        public string GetCameraInfo() => _cameraStrategy.GetCameraInfo();
 
-        public byte[] CaptureFrame() => _cameraStrategy.CaptureFrame();
+        public string GetCameraInfo()
+        {
+            return _cameraStrategy.GetCameraInfo();
+        }
+
+        public byte[] CaptureFrame()
+        {
+            return _cameraStrategy.CaptureFrame();
+        }
 
         public void DisconnectCamera()
         {
@@ -79,21 +86,21 @@ namespace WindowsFormsApp.MachineVision
 
             //_captureContext = new CaptureContext
             //{
-                //ActiveSession = _cameraSession,
-                //StreamTimer = new Timer { Interval = 30 },
-                //OnFreameCaptured = frame =>
-                //{
-                //    if (frame != null)
-                //    {
-                //        using var ms = new System.IO.MemoryStream(frame);
-                //    }
-                //}
+            //ActiveSession = _cameraSession,
+            //StreamTimer = new Timer { Interval = 30 },
+            //OnFreameCaptured = frame =>
+            //{
+            //    if (frame != null)
+            //    {
+            //        using var ms = new System.IO.MemoryStream(frame);
+            //    }
+            //}
             //}
         }
 
         public void StopLiveVideo()
         {
-             
+
         }
 
         public CameraSession GetSession() => _cameraSession;
