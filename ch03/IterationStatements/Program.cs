@@ -17,6 +17,17 @@ for ( int i = 0; i < 3; i++)
     }
 }
 
+// Foreach loop example
+//int[] arr = new int[] { 1, 2, 3, 4, 5 };
+int[] arr = [1, 2, 3, 4, 5];
+foreach (int element in arr)
+{
+       Console.WriteLine($"Foreach Array element: {element}");
+}
+
+// While loop example
+
+
 
 Console.WriteLine("----------------------");
 Console.WriteLine("Press any key to exit...");
